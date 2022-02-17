@@ -1,0 +1,28 @@
+version: '3.4'
+
+networks:
+  webnet:
+
+services:
+
+  web-service:
+    container_name: web-container
+    image: caddy
+    restart: always
+    ports:
+      - 8080:80
+      - 8443:443
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    depends_on:
+      - php-service
+    networks:
+      - webnet
+
+  php-service:
+    container_name: php-container
+    image: php-fpm-8-kusala:0.1.0
+    build: .
+    restart: always
+    networks:
+      - webnet

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: caddy-config
+  labels:
+    app: carcare
+data:
+  Caddyfile: |
+    :80 {
+      root * /app/public
+      php_fastcgi localhost:9000
+    }
