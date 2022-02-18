@@ -24,9 +24,11 @@ spec:
           - --config
           - /etc/caddy/Caddyfile
         ports:
-        - containerPort: 80
+        - name: http
+          containerPort: 80
           protocol: TCP
-        - containerPort: 443
+        - name: https
+          containerPort: 443
           protocol: TCP
         resources:
           limits:
@@ -37,7 +39,7 @@ spec:
           mountPath: /etc/caddy
           readOnly: true
       - name: php-fpm
-        image: asktestacr.azurecr.io/php-fpm-8-kusala:0.1.0
+        image: asktestacr.azurecr.io/php-fpm-8-kusala:0.4.0
         imagePullPolicy: Always
         ports:
         - containerPort: 9000
