@@ -15,39 +15,39 @@ spec:
         app: carcare
     spec: 
       containers:
-      - name: caddy
-        image: caddy:2
-        imagePullPolicy: Always
-        args:
-          - caddy
-          - run
-          - --config
-          - /etc/caddy/Caddyfile
-        ports:
-        - name: http
-          containerPort: 80
-          protocol: TCP
-        - name: https
-          containerPort: 443
-          protocol: TCP
-        resources:
-          limits:
-            memory: 128Mi
-            cpu: 500m
-        volumeMounts:
-        - name: config 
-          mountPath: /etc/caddy
-          readOnly: true
-      - name: php-fpm
-        image: asktestacr.azurecr.io/php-fpm-8-kusala:0.4.0
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 9000
-          protocol: TCP
-        resources:
-          limits:
-            memory: 128Mi
-            cpu: 500m
+        - name: caddy
+          image: caddy:2
+          imagePullPolicy: Always
+          args:
+            - caddy
+            - run
+            - --config
+            - /etc/caddy/Caddyfile
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+            - name: https
+              containerPort: 443
+              protocol: TCP
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 500m
+          volumeMounts:
+            - name: config 
+              mountPath: /etc/caddy
+              readOnly: true
+        - name: php-fpm
+          image: asktestacr.azurecr.io/php-fpm-8-kusala:0.4.0
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 9000
+            protocol: TCP
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 500m
       volumes:
         - name: config
           configMap:

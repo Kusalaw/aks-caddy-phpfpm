@@ -1,6 +1,6 @@
 # Cluster Architecture
 
-![cluster architecture](https://user-images.githubusercontent.com/25655950/154640716-668594a0-7e20-442d-91f2-b613ecc8aa90.JPG)
+![cluster architecture](https://user-images.githubusercontent.com/25655950/154657210-c44702f7-e3da-4fc0-8f1b-f4c7c9412eeb.jpg)
 
 
 ## Cluster Access (temporary)
