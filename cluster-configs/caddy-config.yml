@@ -5,7 +5,7 @@ metadata:
   labels:
     app: carcare
 data:
-  Caddyfile: |
+  Caddyfile: |-
     :80 {
       root * /app/public
       php_fastcgi localhost:9000

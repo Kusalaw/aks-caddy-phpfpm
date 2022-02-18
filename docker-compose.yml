@@ -7,7 +7,7 @@ services:
 
   web-service:
     container_name: web-container
-    image: caddy
+    image: caddy:2
     restart: always
     ports:
       - 8080:80
@@ -21,7 +21,7 @@ services:
 
   php-service:
     container_name: php-container
-    image: php-fpm-8-kusala:0.1.0
+    image: php-fpm-8-kusala:0.2.0
     build: .
     restart: always
     networks:
