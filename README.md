@@ -1,8 +1,8 @@
 # Cluster Architecture
 
-![carcare-cluster](https://user-images.githubusercontent.com/25655950/154635775-50aea86b-8736-4122-97ef-eb96168a89ac.JPG)
+![cluster architecture](https://user-images.githubusercontent.com/25655950/154640716-668594a0-7e20-442d-91f2-b613ecc8aa90.JPG)
 
 
-## Site Access (temporary)
+## Cluster Access (temporary)
 
 http://carcare.trade/test2.php
