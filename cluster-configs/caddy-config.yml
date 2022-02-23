@@ -6,7 +6,8 @@ metadata:
     app: carcare
 data:
   Caddyfile: |-
-    :80 {
-      root * /app/public
-      php_fastcgi localhost:9000
+    carcare.trade:443 {
+      root * /srv/app/public
+      tls /etc/ssl/carcare.trade.crt /etc/ssl/carcare.trade.key
+      php_fastcgi unix//var/run/php/php-fpm.sock
     }

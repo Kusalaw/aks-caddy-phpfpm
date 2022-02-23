@@ -16,13 +16,8 @@ spec:
     spec: 
       containers:
         - name: caddy
-          image: caddy:2
+          image: asktestacr.azurecr.io/kusala_caddy:v1
           imagePullPolicy: Always
-          args:
-            - caddy
-            - run
-            - --config
-            - /etc/caddy/Caddyfile
           ports:
             - name: http
               containerPort: 80
@@ -30,25 +25,38 @@ spec:
             - name: https
               containerPort: 443
               protocol: TCP
-          resources:
-            limits:
-              memory: 128Mi
-              cpu: 500m
+            - name: http3
+              containerPort: 443
+              protocol: UDP
           volumeMounts:
             - name: config 
               mountPath: /etc/caddy
               readOnly: true
+            - name: php-socket 
+              mountPath: /var/run/php
+
         - name: php-fpm
-          image: asktestacr.azurecr.io/php-fpm-8-kusala:0.4.0
+          image: asktestacr.azurecr.io/carcare_php:latest
           imagePullPolicy: Always
-          ports:
-          - containerPort: 9000
-            protocol: TCP
-          resources:
-            limits:
-              memory: 128Mi
-              cpu: 500m
+          volumeMounts:
+            - name: php-socket
+              mountPath: /var/run/php
+
+        - name: db
+          image: postgres:13-alpine
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: db-data
+              mountPath: /var/lib/postgresql/data
+          env:
+            - name: POSTGRES_HOST_AUTH_METHOD
+              value: trust
+
       volumes:
         - name: config
           configMap:
             name: caddy-config
+        - name: db-data
+          emptyDir: {}
+        - name: php-socket
+          emptyDir: {}
